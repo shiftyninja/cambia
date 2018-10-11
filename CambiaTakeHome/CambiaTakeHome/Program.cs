@@ -16,35 +16,46 @@ namespace CambiaTakeHome
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             StreamReader reader = new StreamReader(".\\input.csv");
+            string line = null;
 
             try
             {
                 // Read single line from file.
-                var line = reader.ReadLine();
-
-                // Split the line into individual strings
-                var strings = line.Split(',');
-
-                // Sort the strings in descending order
-                Array.Sort(strings, (a, b) => b.CompareTo(a));
-
-                // Create a new line by joining the sorted strings
-                var newLine = string.Join(",", strings);
-
-                Console.WriteLine(newLine);
+                line = reader.ReadLine();
             }
             catch
             {
-                Console.WriteLine("File is empty");
+                Console.WriteLine("input.csv file is empty");
             }
             finally
             {
                 reader.Close();
             }
 
+            if (string.IsNullOrEmpty(line))
+                return 1;
+
+            string newLine = SplitAndSortDescendingLine(line);
+            StreamWriter writer = new StreamWriter(".\\output.csv");
+            writer.WriteLine(newLine);
+            writer.Close();
+
+            return 0;
+        }
+
+        private static string SplitAndSortDescendingLine(string line)
+        {
+            // Split the line into individual strings
+            var strings = line.Split(',');
+
+            // Sort the strings in descending order
+            Array.Sort(strings, (a, b) => b.CompareTo(a));
+
+            // Create a new line by joining the sorted strings
+            return string.Join(",", strings);
         }
     }
 }
