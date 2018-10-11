@@ -24,7 +24,18 @@ namespace CambiaTakeHome
             {
                 // Read single line from file.
                 var line = reader.ReadLine();
-                Console.WriteLine(line);
+
+                // Split the line into individual strings
+                var strings = line.Split(',');
+
+                // Sort the strings
+                Array.Sort(strings);
+
+                // Create a new line by joining the sorted strings
+                var newLine = string.Join(",", strings);
+
+                
+                Console.WriteLine(newLine);
             }
             catch
             {
