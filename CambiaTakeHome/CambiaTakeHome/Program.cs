@@ -28,13 +28,12 @@ namespace CambiaTakeHome
                 // Split the line into individual strings
                 var strings = line.Split(',');
 
-                // Sort the strings
-                Array.Sort(strings);
+                // Sort the strings in descending order
+                Array.Sort(strings, (a, b) => b.CompareTo(a));
 
                 // Create a new line by joining the sorted strings
                 var newLine = string.Join(",", strings);
 
-                
                 Console.WriteLine(newLine);
             }
             catch
