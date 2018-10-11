@@ -39,9 +39,7 @@ namespace CambiaTakeHome
                 return 1;
 
             string newLine = SplitAndSortDescendingLine(line);
-            StreamWriter writer = new StreamWriter(".\\output.csv");
-            writer.WriteLine(newLine);
-            writer.Close();
+            WriteLineToFile(newLine);
 
             return 0;
         }
@@ -56,6 +54,13 @@ namespace CambiaTakeHome
 
             // Create a new line by joining the sorted strings
             return string.Join(",", strings);
+        }
+
+        private static void WriteLineToFile(string newLine)
+        {
+            StreamWriter writer = new StreamWriter(".\\output.csv");
+            writer.WriteLine(newLine);
+            writer.Close();
         }
     }
 }
