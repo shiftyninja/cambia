@@ -10,6 +10,7 @@
 // • output file: Stockholm,Oslo,Copenhagen
 
 using System;
+using System.IO;
 
 namespace CambiaTakeHome
 {
@@ -17,6 +18,23 @@ namespace CambiaTakeHome
     {
         static void Main(string[] args)
         {
+            StreamReader reader = new StreamReader(".\\input.csv");
+
+            try
+            {
+                // Read single line from file.
+                var line = reader.ReadLine();
+                Console.WriteLine(line);
+            }
+            catch
+            {
+                Console.WriteLine("File is empty");
+            }
+            finally
+            {
+                reader.Close();
+            }
+
         }
     }
 }
